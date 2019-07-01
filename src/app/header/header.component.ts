@@ -27,6 +27,8 @@ export class HeaderComponent {
 
   public headerTitleColor = this.sanitizer.bypassSecurityTrustStyle('color: orange');
 
+  public rates = [{value: 26.25, currency: 'USD'}, {value: 30.25, currency: 'EUR'}, {value: 0.42, currency: 'RUB'}];
+
   constructor(
     private sanitizer: DomSanitizer
   ) {

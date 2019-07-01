@@ -7,4 +7,5 @@ mat-sidenav {
 }
 mat-sidenav-content {
  padding: 10px;
+ position: relative;
 }
