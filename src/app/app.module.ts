@@ -2,17 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './content/backoffice/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.component';
-import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
-import { HiddenDirective } from './header/exchange-rates/hidden.directive';
+import { SidebarComponent } from './content/backoffice/sidebar/sidebar.component';
+import { ExchangeRatesComponent } from './content/backoffice/header/exchange-rates/exchange-rates.component';
+import { ExchangeRatesDirective } from './content/backoffice/header/exchange-rates/exchange-rates.directive';
+import { HiddenDirective } from './content/backoffice/header/exchange-rates/hidden.directive';
 import { ProductsModule } from './content/products/products.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptor.service';
 import { ModalModule } from './modal/modal.module';
+import { LoginComponent } from './content/login/login.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
+import { BackofficeComponent } from './content/backoffice/backoffice.component';
+import { SignupComponent } from './content/signup/signup.component';
+import { AuthGuardService } from './auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +27,10 @@ import { ModalModule } from './modal/modal.module';
     SidebarComponent,
     ExchangeRatesComponent,
     ExchangeRatesDirective,
-    HiddenDirective
+    HiddenDirective,
+    LoginComponent,
+    BackofficeComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -29,14 +38,16 @@ import { ModalModule } from './modal/modal.module';
     SharedModule,
     ProductsModule,
     HttpClientModule,
-    ModalModule
+    ModalModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-    }
+    },
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

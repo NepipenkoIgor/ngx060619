@@ -5,8 +5,8 @@
 
 <mat-grid-list cols="4" [rowHeight]="500" *ngIf="products$ | async as products; else loader ">
   <mat-grid-tile
-    *ngFor="let product of products | productsFilter:searchTerm:onlyFavorites; odd as isOdd; trackBy: trackByFn">
-    <app-product-card [product]="product" [isOdd]="isOdd"></app-product-card>
+    *ngFor="let product of products | productsFilter:searchTerm:onlyFavorites; odd as isOdd; first as isFirst;">
+    <app-product-card appInit [product]="product" [first]="isFirst" [isOdd]="isOdd"></app-product-card>
   </mat-grid-tile>
 </mat-grid-list>
 

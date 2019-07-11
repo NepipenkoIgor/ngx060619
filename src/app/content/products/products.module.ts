@@ -4,20 +4,21 @@ import { ProductsComponent } from './products.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductsFilterPipe } from './products-filter.pipe';
 import { SharedModule } from '../../shared/shared.module';
-import { ProductsService } from './products.service';
 import { BASE_URL, BASE_URL_TOKEN } from '../../config';
 import { CardConfirmModalComponent } from './product-card/card-confirm-modal/card-confirm-modal.component';
+import { InitDirective } from './init.directive';
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductCardComponent,
     ProductsFilterPipe,
-    CardConfirmModalComponent
+    CardConfirmModalComponent,
+    InitDirective
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {provide: BASE_URL_TOKEN, useValue: BASE_URL},
