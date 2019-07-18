@@ -1,6 +1,6 @@
 import { Component, OnInit, Optional, SkipSelf } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material';
-import { IProduct } from '../../mock';
+import { IProduct } from '../../../../mock';
 import { Observable } from 'rxjs';
 import { ProductsService } from './products.service';
 import { HttpClient } from '@angular/common/http';

@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { ComponentFactoryResolver, Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 export interface IModalData {
   component: any;
   context: any;
+  resolver: ComponentFactoryResolver;
 }
 
 @Injectable()

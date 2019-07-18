@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { IProduct } from '../../mock';
+import { IProduct } from '../../../../mock';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 

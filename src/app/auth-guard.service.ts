@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { URL } from './routes';
+import { URL } from './app-routing.module';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
@@ -13,10 +13,8 @@ export class AuthGuardService implements CanActivate {
   }
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    console.log(route);
-    console.log(state);
     const url = state.url;
-    return of(false)
+    return of(true)
       .pipe(
         switchMap((isLogged) => {
           if (!isLogged && (url === `/${URL.LOGIN}` || url === `/${URL.SIGNUP}`)) {

@@ -16,20 +16,19 @@ export class ModalComponent implements OnInit {
   public isOpen = false;
 
   public constructor(
-    private modalService: ModalService,
-    private _cfr: ComponentFactoryResolver,
+    private modalService: ModalService
   ) {
   }
 
   public ngOnInit(): void {
     this.modalService.modalSequence$
-      .subscribe(({component, context}: IModalData) => {
+      .subscribe(({component, context, resolver}: IModalData) => {
         if (!component) {
           this.close();
           return;
         }
         this.isOpen = true;
-        this.childComponent = this._cfr.resolveComponentFactory(component);
+        this.childComponent = resolver.resolveComponentFactory(component);
         this.modalContext = this.modal.createComponent(this.childComponent);
         Object.keys(context).forEach((key: string) => {
           this.modalContext.instance[key] = context[key];

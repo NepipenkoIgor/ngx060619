@@ -1,6 +1,6 @@
-import { Component, Host, Input, Optional, SkipSelf } from '@angular/core';
-import { IProduct } from '../../../mock';
-import { ModalService } from '../../../modal/modal.service';
+import { Component, ComponentFactoryResolver, Host, Input, Optional, SkipSelf } from '@angular/core';
+import { IProduct } from '../../../../../mock';
+import { ModalService } from '../../../../../modal/modal.service';
 import { CardConfirmModalComponent } from './card-confirm-modal/card-confirm-modal.component';
 
 @Component({
@@ -18,12 +18,14 @@ export class ProductCardComponent {
   public isOdd: boolean;
 
   constructor(
-   @SkipSelf() @Optional() private modalService: ModalService
+    @SkipSelf() @Optional() private modalService: ModalService,
+    private cfr: ComponentFactoryResolver,
   ) {
   }
 
   public addToCart(product: IProduct): void {
     this.modalService.open({
+      resolver: this.cfr,
       component: CardConfirmModalComponent, context: {
         product,
         save: () => {
