@@ -1,3 +1,25 @@
-<a [routerLink]="['/login']" >
- go to login
-</a>
+<div class="signin-content">
+  <mat-card>
+    <mat-card-content >
+      <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
+      <p>Signup to continue</p>
+      <mat-form-field  class="full-width">
+        <input matInput type="text" placeholder="User name"  [formControl]="signupForm.get('username')" >
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="email"  formControlName="email">
+      </mat-form-field>
+      <div formGroupName="password"  appEqualValidator >
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="password"  formControlName="password" >
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="confirm password" formControlName="cpassword" >
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary"  type="submit"> Signup</button>
+      <a mat-button [routerLink]="['/login']" > Login</a>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

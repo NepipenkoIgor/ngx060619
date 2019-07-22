@@ -1,3 +1,16 @@
-<p>
-  login works!
-</p>
+<div class="signin-content">
+  <mat-card>
+    <mat-card-content ngForm #f="ngForm">
+      <p>Login to continue</p>
+      <mat-form-field  class="full-width">
+        <input matInput type="text" placeholder="User name" name="username" ngModel #c="ngModel"  appUsernameValidator required minlength="6">
+        <mat-error *ngIf="c.errors && c.errors.minlength"> username should have {{c.errors.minlength.requiredLength}} symbols. You input only {{c.errors.minlength.actualLength}} </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Password" name="password" ngModel  required minlength="6">
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="login(f.value)"> Login</button>
+      <a mat-button [routerLink]="['/signup']" > Sign up</a>
+    </mat-card-content>
+  </mat-card>
+</div>

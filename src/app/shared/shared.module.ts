@@ -12,6 +12,11 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { BASE_URL, BASE_URL_TOKEN } from '../config';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ValidatorsService } from './services/validators.service';
+import { UsernameValidatorDirective } from './directives/username-validator.directive';
+import { EqualValidatorDirective } from './directives/equal-validator.directive';
+import { CheckusernameDirective } from './directives/checkusername.directive';
 
 @NgModule({
   exports: [
@@ -28,6 +33,11 @@ import { BASE_URL, BASE_URL_TOKEN } from '../config';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    UsernameValidatorDirective,
+    EqualValidatorDirective,
+    CheckusernameDirective
   ],
   providers: [
     {
@@ -36,7 +46,9 @@ import { BASE_URL, BASE_URL_TOKEN } from '../config';
       multi: true
     },
     {provide: BASE_URL_TOKEN, useValue: BASE_URL},
+    ValidatorsService
   ],
+  declarations: [UsernameValidatorDirective, EqualValidatorDirective, CheckusernameDirective],
 })
 export class SharedModule {
 }
