@@ -7,7 +7,6 @@ import { CardConfirmModalComponent } from './product-card/card-confirm-modal/car
 import { InitDirective } from './init.directive';
 import { ProductsRoutingModule } from './products-routing.module';
 import { OneProductComponent } from './one-product/one-product.component';
-import { ProductResolverService } from './one-product/product-resolver.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +23,6 @@ import { ProductResolverService } from './one-product/product-resolver.service';
   ],
   exports: [
     ProductsComponent
-  ],
-  providers: [
-    ProductResolverService
   ],
   entryComponents: [CardConfirmModalComponent]
 })

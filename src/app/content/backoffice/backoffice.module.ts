@@ -7,6 +7,8 @@ import { HiddenDirective } from './header/exchange-rates/hidden.directive';
 import { BackofficeComponent } from './backoffice.component';
 import { SharedModule } from '../../shared/shared.module';
 import { BackofficeRoutingModule } from './backoffice-routing.module';
+import { CartComponent } from './header/cart/cart.component';
+import { ProductComponent } from './header/cart/product/product.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { BackofficeRoutingModule } from './backoffice-routing.module';
     ExchangeRatesDirective,
     HiddenDirective,
     BackofficeComponent,
+    CartComponent,
+    ProductComponent,
   ],
   imports: [
     SharedModule,

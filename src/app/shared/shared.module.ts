@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {
+  MatBadgeModule,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule,
   MatGridListModule,
   MatIconModule, MatInputModule,
@@ -17,6 +18,8 @@ import { ValidatorsService } from './services/validators.service';
 import { UsernameValidatorDirective } from './directives/username-validator.directive';
 import { EqualValidatorDirective } from './directives/equal-validator.directive';
 import { CheckusernameDirective } from './directives/checkusername.directive';
+import { ProductsService } from './services/products.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   exports: [
@@ -37,9 +40,12 @@ import { CheckusernameDirective } from './directives/checkusername.directive';
     ReactiveFormsModule,
     UsernameValidatorDirective,
     EqualValidatorDirective,
-    CheckusernameDirective
+    CheckusernameDirective,
+    MatBadgeModule,
+    FlexLayoutModule
   ],
   providers: [
+    ProductsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

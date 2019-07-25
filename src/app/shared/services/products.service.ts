@@ -1,13 +1,15 @@
 import { Observable, of } from 'rxjs';
-import { IProduct } from '../../../../mock';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { IProduct } from '../../store/reducers/products.reducer';
+import { Inject } from '@angular/core';
+
 
 
 export class ProductsService {
 
   public constructor(
-    private http: HttpClient,
+    @Inject(HttpClient) private http: HttpClient,
   ) {
   }
 

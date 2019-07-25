@@ -6,4 +6,8 @@
 
   <span class="fill-remaining-space"></span>
   <app-exchange-rates [rates]="rates"></app-exchange-rates>
+  <div class="cart">
+    <mat-icon [matBadge]="productsCount$ | async" matBadgeColor="warn" (click)="isOpen = true">shopping_cart</mat-icon>
+    <app-cart [ngClass]="{closed: !isOpen}"></app-cart>
+  </div>
 </mat-toolbar>

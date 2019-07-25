@@ -1,15 +1,15 @@
 import { Component, OnInit, Optional, SkipSelf } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material';
-import { IProduct } from '../../../../mock';
 import { Observable } from 'rxjs';
-import { ProductsService } from './products.service';
-import { HttpClient } from '@angular/common/http';
+import { IStore } from '../../../../store';
+import { Store } from '@ngrx/store';
+import { GetProductsPending } from '../../../../store/actions/products.action';
+import { IProduct } from '../../../../store/reducers/products.reducer';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
-  providers: [ {provide: ProductsService, useClass: ProductsService, deps: [HttpClient]},]
 })
 export class ProductsComponent implements OnInit {
   public products$: Observable<IProduct[]>;
@@ -17,12 +17,13 @@ export class ProductsComponent implements OnInit {
   public onlyFavorites: boolean;
 
   constructor(
-     private productsService: ProductsService
+    private store: Store<IStore>,
   ) {
   }
 
   ngOnInit() {
-    this.products$ = this.productsService.getProducts();
+    this.products$ = this.store.select('products');
+    this.store.dispatch(new GetProductsPending());
   }
 
 
@@ -36,7 +37,7 @@ export class ProductsComponent implements OnInit {
   }
 
   // TODO why rerender  item._id ???
-  public trackByFn(index: number, item: IProduct): number {
+  public trackByFn(index: number, item: IProduct): string {
     return item._id;
   }
 }
