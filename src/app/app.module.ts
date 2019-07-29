@@ -5,12 +5,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from './modal/modal.module';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './store';
+import { CustomSerializer, logoutAcdClearState, reducers } from './store';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from './store/effects/products.effect';
 import { SharedModule } from './shared/shared.module';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { AuthEffects } from './store/effects/auth.effect';
+import { RouterEffects } from './store/effects/router.effect';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,13 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     ModalModule,
     AppRoutingModule,
-    SharedModule,
-    StoreModule.forRoot(reducers),
+    SharedModule.forRoot(),
+    StoreModule.forRoot(reducers, {metaReducers: [logoutAcdClearState]}),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([ProductsEffects])
+    EffectsModule.forRoot([ProductsEffects, AuthEffects, RouterEffects]),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+    })
   ],
   bootstrap: [AppComponent]
 })

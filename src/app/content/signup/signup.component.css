@@ -7,3 +7,15 @@ mat-card {
 .signin-content {
   padding: 60px 1rem;
 }
+
+.male_control {
+  text-align: left;
+  margin:  5px 0 15px 0;
+}
+.male_control span{
+  display: inline-block;
+}
+.male_control app-switcher{
+  display: inline-block;
+  margin: -5px 10px;
+}

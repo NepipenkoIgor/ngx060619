@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IStore } from '../../store';
+import { LoginPending } from '../../store/actions/auth.action';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent  {
 
-  constructor() {
-  }
-
-  ngOnInit() {
+  public constructor(
+    public store: Store<IStore>
+  ) {
   }
 
   public login(loginInfo: { username: string, password: string }): void {
-    console.log(loginInfo);
+    this.store.dispatch(new LoginPending(loginInfo));
   }
 }

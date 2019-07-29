@@ -6,9 +6,22 @@
       <mat-form-field  class="full-width">
         <input matInput type="text" placeholder="User name"  [formControl]="signupForm.get('username')" >
       </mat-form-field>
-      <mat-form-field class="full-width">
-        <input matInput type="text" placeholder="email"  formControlName="email">
-      </mat-form-field>
+
+      <div fxLayout="column">
+        <div fxLayout="row" *ngFor="let control of getControls(signupForm, 'emails') as controls; index as i; first as f " >
+          <mat-form-field class="full-width" fxFlex="90">
+            <input matInput type="text" placeholder="email"  [formControl]="control">
+          </mat-form-field>
+          <div fxFlex="10" fxLayout="row">
+            <mat-icon (click)="addEmail()" *ngIf="f">add</mat-icon>
+            <mat-icon (click)="removeEmail(i)" *ngIf="controls.length > 1">delete</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="male_control">
+        <span>Male</span>
+        <app-switcher formControlName="male" ></app-switcher>
+      </div>
       <div formGroupName="password"  appEqualValidator >
         <mat-form-field class="full-width">
           <input matInput type="password" placeholder="password"  formControlName="password" >

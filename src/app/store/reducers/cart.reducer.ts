@@ -8,7 +8,6 @@ import {
   RemoveProductFromCart
 } from '../actions/cart.action';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { products } from '../../mock';
 import { IStore } from '../index';
 
 
@@ -20,7 +19,7 @@ export const adapter: EntityAdapter<ICartProduct> = createEntityAdapter<ICartPro
   selectId: (product: ICartProduct) => product._id
 });
 
-const initialState: EntityState<ICartProduct> = adapter.getInitialState([{}]);
+const initialState: EntityState<ICartProduct> = adapter.getInitialState([]);
 
 
 export function cartReducer(
@@ -52,12 +51,12 @@ export function cartReducer(
       changes: {count: action.payload.count - 1}
     }, state);
   }
+  return state;
 }
 
 
 export const {selectIds, selectAll} = adapter.getSelectors((state: IStore) => {
-  debugger
-  return state.cart
+  return state.cart;
 });
 // export const cartProducts = createSelector(selectIds, (products) => {
 //   return products;
@@ -65,7 +64,6 @@ export const {selectIds, selectAll} = adapter.getSelectors((state: IStore) => {
 
 
 export const totalCount = createSelector(selectAll, (p: ICartProduct[]) => {
-debugger
   return p.reduce((count: number, product: ICartProduct) => {
     return (count += product.count);
   }, 0);

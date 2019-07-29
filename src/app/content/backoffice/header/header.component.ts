@@ -15,6 +15,7 @@ import { IStore } from '../../../store';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { totalCount } from '../../../store/reducers/cart.reducer';
+import { LogoutPending } from '../../../store/actions/auth.action';
 
 @Component({
   selector: 'app-header',
@@ -59,6 +60,10 @@ export class HeaderComponent implements OnInit {
 
   public toggleSidenav(): void {
     this.drawer.toggle();
+  }
+
+  public logout(): void {
+    this.store.dispatch(new LogoutPending());
   }
 
 }

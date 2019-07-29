@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import {
   MatBadgeModule,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule,
   MatGridListModule,
   MatIconModule, MatInputModule,
-  MatListModule,
+  MatListModule, MatMenuModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatToolbarModule
@@ -20,6 +20,9 @@ import { EqualValidatorDirective } from './directives/equal-validator.directive'
 import { CheckusernameDirective } from './directives/checkusername.directive';
 import { ProductsService } from './services/products.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AuthGuardService } from './services/auth-guard.service';
+import { PreloadService } from './services/preload.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   exports: [
@@ -42,19 +45,30 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     EqualValidatorDirective,
     CheckusernameDirective,
     MatBadgeModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatMenuModule
   ],
   providers: [
-    ProductsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
     },
-    {provide: BASE_URL_TOKEN, useValue: BASE_URL},
-    ValidatorsService
   ],
   declarations: [UsernameValidatorDirective, EqualValidatorDirective, CheckusernameDirective],
 })
 export class SharedModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        ValidatorsService,
+        {provide: BASE_URL_TOKEN, useValue: BASE_URL},
+        ProductsService,
+        AuthGuardService,
+        PreloadService,
+        AuthService
+      ]
+    };
+  }
 }

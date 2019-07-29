@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarComponent } from './sidebar.component';
+import { By } from '@angular/platform-browser';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -11,15 +12,13 @@ describe('SidebarComponent', () => {
       declarations: [ SidebarComponent ]
     })
     .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
+    fixture.debugElement.query(By.css(''))
     expect(component).toBeTruthy();
   });
 });

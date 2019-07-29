@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { AuthGuardService } from './auth-guard.service';
-import { PreloadService } from './preload.service';
+import { AuthGuardService } from './shared/services/auth-guard.service';
+import { PreloadService } from './shared/services/preload.service';
 
 export enum URL {
   LOGIN = 'login',
@@ -41,7 +41,6 @@ export const routes: Route[] = [
     RouterModule.forRoot(routes, {preloadingStrategy: PreloadService})
   ],
   exports: [RouterModule],
-  providers: [AuthGuardService, PreloadService]
 })
 export class AppRoutingModule {
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IStore } from '../../../../store';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ICartProduct, selectIds } from '../../../../store/reducers/cart.reducer';
+import { ICartProduct, selectAll } from '../../../../store/reducers/cart.reducer';
 import { DecrementProductInCart, IncrementProductInCart, RemoveProductFromCart } from '../../../../store/actions/cart.action';
 
 @Component({
@@ -12,7 +12,7 @@ import { DecrementProductInCart, IncrementProductInCart, RemoveProductFromCart }
 })
 export class CartComponent implements OnInit {
 
-  public products: ICartProduct[];
+  public products$: Observable<ICartProduct[]>;
 
   constructor(
     private store: Store<IStore>
@@ -21,12 +21,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     // TODO selectors ????
-    this.store.select('cart').subscribe(v => {
-      if (!v) {
-        return;
-      }
-      this.products = Object.values(v.entities);
-    });
+    this.products$ = this.store.select(selectAll);
     // this.products$ = this.store.select(selectAll);
   }
 

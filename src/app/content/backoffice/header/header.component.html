@@ -10,4 +10,13 @@
     <mat-icon [matBadge]="productsCount$ | async" matBadgeColor="warn" (click)="isOpen = true">shopping_cart</mat-icon>
     <app-cart [ngClass]="{closed: !isOpen}"></app-cart>
   </div>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>

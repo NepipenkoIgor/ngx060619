@@ -1,5 +1,5 @@
 <div>
-  <app-product *ngFor="let product of products; trackBy:trackByFn " [product]="product"
+  <app-product *ngFor="let product of products$ | async; trackBy:trackByFn " [product]="product"
                (remove)="removeProduct($event)"
                (increment)="incrementProduct($event)"
                (decrement)="decrementProduct($event)"

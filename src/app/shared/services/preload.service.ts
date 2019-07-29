@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
 import { PreloadAllModules, Route } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { delay, mergeMap } from 'rxjs/operators';
-import { URL } from './app-routing.module';
+import { URL } from '../../app-routing.module';
 
 export class PreloadService implements PreloadAllModules {
 
